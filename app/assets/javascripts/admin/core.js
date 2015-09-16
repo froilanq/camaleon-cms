@@ -195,6 +195,14 @@ var init_form_validations = function(form){
     };
 })(jQuery);
 
+// helper validate only letters latin
+(function($){
+    var regex = /^[a-z\sÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏàáâãäåæçèéêëìíîïÐÑÒÓÔÕÖØÙÚÛÜÝÞßðñòóôõöøùúûüýþÿ]+$/i;
+    jQuery.validator.addMethod("lettersonly", function(value, element) {
+        return this.optional(element) || regex.test(value);
+    }, "Only alphabetical characters");
+})(jQuery);
+
 (function($){
     $.fn.table_order = function (options){
         var default_options = {url: "", table: ".table", on_success: false, on_change: false};
